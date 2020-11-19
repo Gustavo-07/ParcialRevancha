@@ -5,18 +5,18 @@ using Infrastructura.Repos;
 
 namespace Application.SaleProduct
 {
-    public class SaleProductService
+    public class AddProductService
     {
         protected IUnitOfWork UnitOfWork;
-        public SaleProductService(IUnitOfWork unitOfWork)
+        public AddProductService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
         }
 
-        public SaleProductResponse Sale(SaleProductRequest request)
+        public AddProductResponse Sale(AddProductRequest request)
         {
             var product = UnitOfWork.ProductRepository.Find(request.IdProduct);
-            if (product.Type == "Prepared") return new SaleProductResponse() { Message = "No se puede vender este producto."};
+            if (product.Type == "Prepared") return new AddProductResponse() { Message = "No se puede vender este producto."};
             var result = "";
             switch(product.Type)
             {
@@ -27,15 +27,15 @@ namespace Application.SaleProduct
                 case "Sencillo":
                 case "Combo":
                     result = product.TakeProduct(request.Quantity);
-                    UnitOfWork.CompoundRepository.Edit(product);
+                    UnitOfWork.ProductRepository.Edit(product);
                     break;
             }
             UnitOfWork.Commit();
-            return new SaleProductResponse() { Message = result};
+            return new AddProductResponse() { Message = result};
         }
     }
 
-    public class SaleProductRequest
+    public class AddProductRequest
     {
         [Required(ErrorMessage = "Se necesita el Id del producto a vender")]
         public int IdProduct { get; set; }
@@ -43,7 +43,7 @@ namespace Application.SaleProduct
         public int Quantity { get; set; }
     }
 
-    public class SaleProductResponse
+    public class AddProductResponse
     {
         public string Message { get; set; }
     }
