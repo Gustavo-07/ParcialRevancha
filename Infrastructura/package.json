@@ -1,0 +1,13 @@
+﻿{
+  "name": "Infrastructura",
+  "version": "1.0.0",
+  "config": {
+    "ctxname": "ProductContext",
+    "ctx": "--output-dir Migrations --context ProductContext"
+  },
+  "scripts": {
+    "migration": "npm run m-context && npm run update-db" ,
+    "m-context": "dotnet ef migrations add InitialCreate -s ../WebApplication/ %npm_package_config_ctx%",
+    "update-db": "dotnet ef database update InitialCreate -s ../WebApplication/ --context %npm_package_config_ctxname%"
+  }
+}
