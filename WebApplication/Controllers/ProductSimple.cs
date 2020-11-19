@@ -26,12 +26,21 @@ namespace WebApplication.Controllers
         }
         
         [HttpPost]
-        [Route("DirectSale")]
+        [Route("AddDirectSale")]
         public ActionResult<AddSimpleResponse> AddProductDirectSale(AddDirectSaleRequest request)
         {
             var service = new AddSimpleProductService(_unitOfWork);
             var response = service.AddDirectSale(request);
             return Ok(response);
+        }
+        
+        [HttpPut]
+        [Route("Salida Producto Simple")]
+        public ActionResult<UpdateSimpleResponse> InputSimple(InputRequest request)
+        {
+            var service = new InputService(_unitOfWork);
+            var response = service.Ejecutar(request);
+            return Ok(response); 
         }
 
         [HttpPut]
