@@ -7,6 +7,7 @@ namespace Dominio.Contracts
     {
         IProductRepository ProductRepository { get; }
         ICompoundRepository CompoundRepository { get; }
+        ISimpleRepository SimpleRepository { get; }
         int Commit();
     }
 }

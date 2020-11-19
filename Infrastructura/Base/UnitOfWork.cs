@@ -19,6 +19,13 @@ namespace Infrastructura.Base
         {
             get { return _compoundRepository ??= new CompoundRepository(_dbContext); }
         }
+        
+        private ISimpleRepository _simpleRepository;
+
+        public ISimpleRepository SimpleRepository
+        {
+            get { return _simpleRepository ??= new SimpleRepository(_dbContext); }
+        }
 
         public UnitOfWork(IDbContext context)
         {
