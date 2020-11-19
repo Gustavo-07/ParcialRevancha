@@ -13,17 +13,17 @@ namespace TestApplication
         [SetUp]
         public void Setup()
         {
-            var optionsInMemory = new DbContextOptionsBuilder<ProductContext>().UseInMemoryDatabase("Product").Options;
+            var optionsInMemory = new DbContextOptionsBuilder<ProductContext>().UseInMemoryDatabase("Input").Options;
             _context = new ProductContext(optionsInMemory);
         }
 
         [Test]
-        public void AddProduct()
+        public void InputProduct()
         {
-            var request = new AddDirectSaleRequest { Name = "Gaseosa", Cost = 2000, Quantity = 7};
-            AddSimpleProductService _service = new AddSimpleProductService(new UnitOfWork(_context));
-            var response = _service.AddDirectSale(request);
-            Assert.AreEqual("Registro exitoso, hay en existencia 7 productos", response.Message);
+            var request = new InputRequest { Nombre = "Gaseosa", Cantidad = 3};
+            InputService _service = new InputService(new UnitOfWork(_context));
+            var response = _service.Ejecutar(request);
+            Assert.AreEqual($"Su cantidad es {request.Cantidad}.", response.Mensaje);
         }
     }
 }
