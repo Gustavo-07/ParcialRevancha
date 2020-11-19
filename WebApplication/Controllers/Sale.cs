@@ -16,9 +16,9 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult<SaleProductResponse> SaleProduct(SaleProductRequest request)
+        public ActionResult<AddProductResponse> SaleProduct(AddProductRequest request)
         {
-            var service = new SaleProductService(_unitOfWork);
+            var service = new AddProductService(_unitOfWork);
             var result = service.Sale(request);
             return Ok(result);
         }

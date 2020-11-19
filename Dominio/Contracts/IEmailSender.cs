@@ -1,7 +1,9 @@
-﻿namespace Dominio.Contracts
+﻿using System.Threading.Tasks;
+
+namespace Dominio.Contracts
 {
-    public class IEmailSender
+    public interface IEmailSender
     {
-        
+        Task SendEmailAsync(string email, string subject, string htmlMessage);
     }
 }

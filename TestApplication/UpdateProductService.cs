@@ -1,5 +1,4 @@
-using Application.SimpleProduct;
-using Dominio.Contracts;
+﻿using Application.SimpleProduct;
 using Infrastructura.Base;
 using Infrastructura.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +6,8 @@ using NUnit.Framework;
 
 namespace TestApplication
 {
-    public class Tests
+    public class UpdateProductService
     {
-       
         ProductContext _context;
         
         [SetUp]
